@@ -1,0 +1,15 @@
+/dist
+/tmp
+/lib
+/build
+/node_modules
+npm-debug.log*
+Thumbs.db
+
+# IDEA files
+.idea
+.vscode
+.history
+package-lock.json
+# build files
+.out
