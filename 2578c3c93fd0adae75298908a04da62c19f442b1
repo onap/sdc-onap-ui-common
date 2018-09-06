@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_7c39e9a2",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 69
+      },
+      "writtenOn": "2018-09-06T14:19:26Z",
+      "side": 1,
+      "message": "use project.basedir http://maven.apache.org/ref/3.2.3/maven-model-builder/",
+      "range": {
+        "startLine": 31,
+        "startChar": 47,
+        "endLine": 31,
+        "endChar": 57
+      },
+      "revId": "2578c3c93fd0adae75298908a04da62c19f442b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_3c3ff188",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 69
+      },
+      "writtenOn": "2018-09-06T14:19:26Z",
+      "side": 1,
+      "message": "dont you want to upgrade to a newer version?",
+      "range": {
+        "startLine": 52,
+        "startChar": 28,
+        "endLine": 53,
+        "endChar": 60
+      },
+      "revId": "2578c3c93fd0adae75298908a04da62c19f442b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_5c442d1a",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 69
+      },
+      "writtenOn": "2018-09-06T14:19:26Z",
+      "side": 1,
+      "message": "delete this.",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 35
+      },
+      "revId": "2578c3c93fd0adae75298908a04da62c19f442b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
