@@ -2,8 +2,8 @@
   "name": "onap-ui-common",
   "version": "1.0.57",
   "private": false,
-  "license": "MIT",
   "author": "",
+  "license": "Apache-2.0",
   "main": "index.js",
   "description": "Onap-UI common library contains icons map and styles",
   "repository": {
