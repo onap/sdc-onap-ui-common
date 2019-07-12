@@ -10,7 +10,6 @@
 
     <properties>
         <nexus.proxy>https://nexus.onap.org</nexus.proxy>
-        <staging.profile.id>176c31dfe190a</staging.profile.id>
     </properties>
 
     <build>
@@ -104,18 +103,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <nexusUrl>${nexus.proxy}</nexusUrl>
-                    <stagingProfileId>${staging.profile.id}</stagingProfileId>
-                    <serverId>ecomp-staging</serverId>
-                </configuration>
             </plugin>
 
         </plugins>
