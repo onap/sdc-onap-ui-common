@@ -74,6 +74,7 @@
 
     &.sdc-modal-type-error {
       border-top: solid 6px $red;
+      align-self: baseline;
       .sdc-modal__svg-use {
         fill: $red;
       }
