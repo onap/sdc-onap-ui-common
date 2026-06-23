@@ -34,5 +34,5 @@ For bugs and issues, please use the [issues](https://github.com/onap-sdc/onap-ui
 ### How to Contribute
 **Contribution can be made only by following these guide lines**
 * Every change in the basic HTML files structure, must be followed by changes on the frameworks projects (ONAP-UI-ANGULAR and ONAP-UI-REACT).
-* There will be no any 3rd party UI framework imported (i.e. `Bootstrap`, `Material`, `Foundation`... etc.).
+* There will not be any 3rd party UI framework imported (i.e. `Bootstrap`, `Material`, `Foundation`... etc.).
 * Contribution are done only by the [contribution guide](https://github.com/onap-sdc/onap-ui-common/wiki/Contribution-guide). Contributions submitted not in this format and guidelines will not be considered.
