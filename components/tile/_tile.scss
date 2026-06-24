@@ -67,8 +67,9 @@
 		height: $content-height;
 
 		.sdc-tile-content-icon {
-			margin-top: 27px;
-			text-align: center;
+			width: 100%;
+			margin-top: -1em;
+			text-align: right;
 
 			svg {
 				width: 50px;

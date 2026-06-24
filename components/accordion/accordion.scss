@@ -14,6 +14,7 @@
   .sdc-accordion-header {
     display: flex;
     flex-direction: row;
+    align-items: center;
     .svg-icon-wrapper {
       margin-right: 20px;
       transition: transform 0.4s;

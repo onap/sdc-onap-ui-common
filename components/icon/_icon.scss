@@ -91,6 +91,9 @@
         width: 14px;
         height: 14px;
     }
+    &.__arrow-left {
+        transform: rotate(90deg);
+    }
     &.__artifacts {
         width: 16px;
         height: 20px;

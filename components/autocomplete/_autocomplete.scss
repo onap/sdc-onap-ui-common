@@ -8,6 +8,10 @@
       }
     }
 
+    .dropdown-results {
+      position:absolute;
+    }
+
     ul.autocomplete-results {
       opacity: 0;
       border: solid 1px $blue;
