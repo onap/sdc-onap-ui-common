@@ -23,12 +23,12 @@
     "build": "npm run build:common",
     "build:common": "npm run prebuild && npm run build:icons && npm run build:copy-files && npm run build:scss",
     "build:icons": "node utils/create-svg-icons-map.js",
-    "build:scss": "node-sass styles/style.scss -o lib",
+    "build:scss": "sass styles/style.scss lib/style.css --no-source-map",
     "build:copy-files": "copyfiles -f styles/common/mixins.scss lib/scss && copyfiles -f styles/common/variables.scss lib/scss"
   },
   "devDependencies": {
     "copyfiles": "^2.0.0",
     "delete": "^1.1.0",
-    "node-sass": "^4.9.2"
+    "sass": ">=1.77.0 <1.100.0"
   }
 }
