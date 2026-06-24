@@ -1,4 +1,25 @@
 .sdc-tabs {
+  &.vertical {
+
+    .sdc-tabs-list {
+      float: left;
+
+      .sdc-tab {
+        display: block;
+
+        &.sdc-tab-active {
+          border-left: 2px solid #009fdb;
+          border-bottom: none;
+          margin-left: -2px;
+        }
+      }
+    }
+
+    .sdc-tab-content {
+      margin-top: 0;
+    }
+  }
+
   .sdc-tab {
 	display: inline-block;
 	cursor: pointer;
@@ -32,4 +53,38 @@
   .sdc-tab-content {
 	margin-top: 30px;
   }
+}
+
+.sdc-table-tab {
+  width: 250px;
+  height: 41px;
+  border-top: 1px solid $light-gray;
+  border-right: 1px solid $light-gray;
+  border-left: 1px solid $light-gray;
+  display: inline-block;
+  .tab-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 13px;
+  }
+  cursor: pointer;
+  &.sdc-tab-active {
+    .tab-title {
+      color: $white;
+    }
+    background: $blue;
+    border-top: 1px solid $blue;
+    border-right: 1px solid $blue;
+    border-left: 1px solid $blue;
+  }
+}
+.line-separates {
+  background: $blue;
+  width: 100%;
+  height: 5px;
+}
+.tab-icon {
+  margin-right: 10px;
+  margin-bottom: 1px;
 }

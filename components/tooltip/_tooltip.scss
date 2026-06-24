@@ -28,6 +28,7 @@
     transition: opacity 300ms;
     border: solid 1px $black;
     animation: animation-fade-in-from-bottom .75s ease-in-out; /* tooltip animation */
+    pointer-events: none;
 }
 
 .sdc-tooltip-show {

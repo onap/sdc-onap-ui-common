@@ -19,11 +19,8 @@
         display: flex;
         align-items: center;
 
-        svg {
-            margin-right: 16px;
-            g, path {
-                fill: $dark-gray;
-            }
+        svg-icon {
+            margin-right: 10px;
         }
 
         &:hover {

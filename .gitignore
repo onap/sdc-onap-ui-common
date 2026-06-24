@@ -14,3 +14,6 @@ Thumbs.db
 package-lock.json
 # build files
 .out
+
+# Mac Files
+**/.DS_Store

@@ -4,7 +4,7 @@
 
     <groupId>org.onap.sdc</groupId>
     <artifactId>onap-ui-common</artifactId>
-    <version>1.0.57</version>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
     <name>ONAP UI Common</name>
 
@@ -37,7 +37,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.6</version>
+                <version>1.15.1</version>
                 <configuration>
                     <installDirectory>${project.basedir}</installDirectory>
                 </configuration>
@@ -48,8 +48,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v14.16.0</nodeVersion>
-                            <npmVersion>7.8.0</npmVersion>
+                            <nodeVersion>v18.20.0</nodeVersion>
+                            <npmVersion>10.5.0</npmVersion>
                         </configuration>
                     </execution>
 
@@ -72,26 +72,6 @@
                             <arguments>install</arguments>
                         </configuration>
                     </execution>
-
-                    <!--<execution>
-                      <id>npm tslint src</id>
-                      <goals>
-                        <goal>npm</goal>
-                      </goals>
-                      <configuration>
-                        <arguments>run lint:src</arguments>
-                      </configuration>
-                    </execution>
-
-                    <execution>
-                      <id>npm tslint storybook</id>
-                      <goals>
-                        <goal>npm</goal>
-                      </goals>
-                      <configuration>
-                        <arguments>run lint:stories</arguments>
-                      </configuration>
-                    </execution>-->
 
                     <execution>
                         <id>npm run src build</id>

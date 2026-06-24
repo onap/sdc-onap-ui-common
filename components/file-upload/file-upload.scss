@@ -1,0 +1,32 @@
+.file-upload {
+
+  display: flex;
+  align-items: flex-end;
+
+  .file-upload-input {
+    flex-grow: 1;
+
+    ::ng-deep .sdc-input {
+      margin-bottom: 0px;
+    }
+  }
+
+  .file-upload-button {
+    position: relative;
+    cursor: pointer;
+    border: solid 1px #d2d2d2;
+    border-left: none;
+    
+    .file-opener {
+      top:0px;
+      right: 0px;
+      left: 0px;
+      bottom: 0px;
+
+      .file-opener-input {
+        height: 37px;
+        width: 37px;
+      }
+    }
+  }
+}

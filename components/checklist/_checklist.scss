@@ -12,8 +12,13 @@ $padding-for-sub-level: 28px;
   }
 }
 .checkbox-sublist{
+  display: flex;
+  flex-direction: column;
   padding-left: $padding-for-sub-level;
+  
   .checkbox-item{
+    margin: 14px 0 0 0;
+    
     .sdc-checkbox__label{
       @include body-2;
     }
