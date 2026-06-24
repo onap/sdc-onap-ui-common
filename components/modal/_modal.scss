@@ -83,6 +83,41 @@
           height: 30px;
         }
       }
+
+      .error-modal-message-container {
+          padding-top: 10px;
+          .error-modal-message {
+              color: $gray;
+              padding: 10px  0;
+          }
+      }
+      .error-modal-details {
+          display:flex;
+          flex-direction: column;
+          .detail-row {
+              display: flex;
+              flex-direction: row;
+              padding-top: 10px;
+              .detail-key {
+                  flex: 1;
+              }
+              .detail-value {
+                  flex: 2;
+                  font-weight:bold;
+                  padding-left: 30px;
+              }
+          }
+      }
+      
+      .sdc-accordion {
+          .sdc-accordion-header {
+              padding-top: 20px;
+              order: 2;
+          }
+          .sdc-accordion-body {
+              padding-left: 0;
+          }
+      }
     }
 
     &.sdc-modal-type-custom {
@@ -99,6 +134,11 @@
           color: $white;
           padding-top: 0px;
           @include heading-3;
+          align-items: center;
+          display: inline-flex;
+          .svg-icon{
+            padding-left: 10px;
+          }
         }
         .sdc-modal__close-button {
           margin-top: 0px;
@@ -187,6 +227,7 @@
       button {
         margin-left: 10px;
       }
+      align-items: center;
     }
   }
 }

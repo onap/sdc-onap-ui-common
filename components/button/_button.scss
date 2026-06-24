@@ -179,25 +179,64 @@
     }
   }
 
+  // File opener
+  &.sdc-button__file-opener {
+    input[type=file] {
+      height: 36px;
+      opacity: 0;
+      position: absolute;
+      cursor: pointer;
+    }
+  }
+  /*** Sizes ***/
+  &.btn-xx-large{
+    width: $btn-xx-large;
+    input[type=file] {
+      width: $btn-xx-large;
+    }
+  }
+
+  &.btn-x-large{
+    width: $btn-x-large;
+    input[type=file] {
+      width: $btn-x-large;
+    }
+  }
+
   /*** Sizes ***/
   &.btn-large{
     width: $btn-large;
+    input[type=file] {
+      width: $btn-large;
+    }
   }
 
   &.btn-medium{
     width: $btn-medium;
+    input[type=file] {
+      width: $btn-medium;
+    }
   }
 
   &.btn-small{
     width: $btn-small;
+    input[type=file] {
+      width: $btn-small;
+    }
   }
 
   &.btn-x-small{
     width: $btn-extra-small;
+    input[type=file] {
+      width: $btn-extra-small;
+    }
   }
 
   &.btn-default{
     width: $btn-default;
+    input[type=file] {
+      width: $btn-default;
+    }
   }
 
   /*** Buttons with icons ***/

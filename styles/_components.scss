@@ -5,6 +5,7 @@
 @import "../components/radioGroup/radioGroup";
 @import "../components/tabs/tabs";
 @import "../components/icon/icon";
+@import "../components/icon/svg-icon";
 @import "../components/input/input";
 @import "../components/dropdown/dropdown";
 @import "../components/modal/modal";
@@ -21,5 +22,9 @@
 @import "../components/panel/panel";
 @import "../components/validation/validation";
 @import "../components/loader/loader";
-@import "../components/multiline-ellipsis/multiline_ellipsis";
+@import "../components/ellipsis/multiline_ellipsis";
+@import "../components/ellipsis/char-ellipsis.component";
 @import "../components/textarea/textarea";
+@import "../components/file-upload/file-upload";
+@import "../components/file-opener/_file-opener.component";
+@import "../components/popover/popover.component";
