@@ -113,6 +113,7 @@ jobs:
           npm run build
       - name: Publish to Nexus
         if: steps.check-release.outputs.skip == 'false'
+        # TODO: Replace with action to retrieve credential via 1Password
         run: |
           VERSION="${{ steps.check-release.outputs.version }}"
           npm version "$VERSION" --no-git-tag-version

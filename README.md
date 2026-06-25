@@ -32,7 +32,7 @@ To use the SCSS files you need to reference them from your local SCSS file and c
 For bugs and issues, please use the [issues](https://github.com/onap-sdc/onap-ui-common/issues) page
 
 ### How to Contribute
-**Contribution can be made only by following these guide lines**
+**Contribution can be made only by following these guidelines**
 * Every change in the basic HTML files structure, must be followed by changes on the frameworks projects (ONAP-UI-ANGULAR and ONAP-UI-REACT).
 * There will be no any 3rd party UI framework imported (i.e. `Bootstrap`, `Material`, `Foundation`... etc.).
 * Contribution are done only by the [contribution guide](https://github.com/onap-sdc/onap-ui-common/wiki/Contribution-guide). Contributions submitted not in this format and guidelines will not be considered.
