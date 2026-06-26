@@ -100,15 +100,22 @@ jobs:
         run: |
           npm install
           npm run build
+      - name: Create authenticated .npmrc (snapshot)
+        # Pinned to Matt Watkins' fork branch feat/create-npmrc-action while the
+        # action is under review; switch to lfreleng-actions@<tag> once merged.
+        # yamllint disable-line rule:line-length
+        uses: modeseven-lfreleng-actions/node-create-npmrc-action@8e97d4ab65b38aefabd3b441cf2472af5bddf406
+        with:
+          registry_url: "https://nexus3.onap.org/repository/npm.snapshot/"
+          nexus_user: "sdc-onap-ui-common"
+          load_credential: "true"
+          vault_mapping_json: ${{ secrets.VAULT_MAPPING_JSON }}
+          op_service_account_token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
       - name: Publish snapshot to Nexus
         run: |
           VERSION="${{ steps.version.outputs.snapshot_version }}"
           npm version "$VERSION" --no-git-tag-version
-          printf 'registry=https://nexus3.onap.org/repository/npm.snapshot/\n' > .npmrc
-          printf '//nexus3.onap.org/repository/npm.snapshot/:_auth=%s\n' "$NPM_NEXUS_AUTH" >> .npmrc
           npm publish
-        env:
-          NPM_NEXUS_AUTH: ${{ secrets.NPM_NEXUS_AUTH }}
 
   check-release:
     needs: [notify]
@@ -163,16 +170,22 @@ jobs:
         run: |
           npm install
           npm run build
+      - name: Create authenticated .npmrc (release)
+        # Pinned to Matt Watkins' fork branch feat/create-npmrc-action while the
+        # action is under review; switch to lfreleng-actions@<tag> once merged.
+        # yamllint disable-line rule:line-length
+        uses: modeseven-lfreleng-actions/node-create-npmrc-action@8e97d4ab65b38aefabd3b441cf2472af5bddf406
+        with:
+          registry_url: "https://nexus3.onap.org/repository/npm.public/"
+          nexus_user: "sdc-onap-ui-common"
+          load_credential: "true"
+          vault_mapping_json: ${{ secrets.VAULT_MAPPING_JSON }}
+          op_service_account_token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
       - name: Publish release to Nexus
         run: |
           VERSION="${{ needs.check-release.outputs.version }}"
           npm version "$VERSION" --no-git-tag-version
-          printf 'registry=https://nexus3.onap.org/repository/npm.public/\n' > .npmrc
-          # yamllint disable-line rule:line-length
-          printf '//nexus3.onap.org/repository/npm.public/:_auth=%s\n' "$NPM_NEXUS_AUTH" >> .npmrc
           npm publish
-        env:
-          NPM_NEXUS_AUTH: ${{ secrets.NPM_NEXUS_AUTH }}
 
   report-status:
     if: ${{ always() }}
