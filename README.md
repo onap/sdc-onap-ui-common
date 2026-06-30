@@ -2,7 +2,7 @@
 
 This project aims to create unified UI styled components for multiple development teams who work on the same web-based applications. 
 This repository contains the components HTML files and SCSS files. 
-The project is used by ONAP-UI-ANGULAR and ONAP-UI-REACT that implements components according to the HTML in this project. 
+The project is used by ONAP-UI-ANGULAR and ONAP-UI-REACT that implement components according to the HTML in this project. 
 
 	
 ### Installation
