@@ -1,0 +1,50 @@
+
+.sdc-popover {
+  border-top: 6px solid $blue;
+  background: $white;
+  border-radius: 0;
+  min-height: 50px;
+  min-width: 250px;
+  max-width: 350px;
+  z-index: 1300;
+  position: absolute;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  @include box-shadow( 0 0px 10px 0 rgba($black, 0.5));
+
+  .outerContainer{
+    padding: 10px 10px 10px 20px;
+  }
+
+  .innerContainer{
+    padding: 10px 15px 10px 0px;
+  }
+
+  .closeButton{
+    float:right;
+    overflow:hidden;
+    height:100%;
+  }
+
+  .title{
+    @include base-font-semibold;
+    color: $text-black;
+    overflow:hidden;
+    font-size: 16px;
+    margin-bottom:8px;
+  }
+
+  .content{
+    @include base-font-regular;
+    color: $text-black;
+    overflow:hidden;
+    font-size: 14px;
+    margin-bottom:8px;
+  }
+
+}
+
+
+
+
+
+

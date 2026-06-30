@@ -1,5 +1,4 @@
 .sdc-input {
-  margin-bottom: 10px;
 
   .sdc-input__label {
     margin-bottom: 5px;
@@ -12,67 +11,115 @@
       margin: 0 4px 0 0;
     }
   }
+  .sdc-input-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    .sdc-input__input {
+      @include box-sizing;
+      padding: 0 10px;
+      height: 38px;
+      width: 100%; //415px;
+      border: solid 1px $light-gray;
+      border-radius: 2px;
+      color: $dark-gray;
 
-  .sdc-input__input {
-    @include box-sizing;
-    padding: 0 10px;
-    height: 38px;
-    width: 100%;//415px;
-    border: solid 1px $light-gray;
-    border-radius:2px;
-    color: $dark-gray;
+      &.medium {
+        height: 30px;
+      }
 
-    &.error, &.error:focus, &.error:disabled  {
-      border: solid 1px $red;
-      color: $red;
-      outline: none;
+      &.small {
+        height: 20px;
+        font-size: 12px;
+      }
+      &.error, &.error:focus, &.error:disabled {
+        border: solid 1px $red;
+        color: $red;
+        outline: none;
+      }
+
+      &:read-only {
+        border: none;
+        outline: none;
+        color: $text-black
+      }
+      &:-moz-read-only { /* For Firefox */
+        border: none;
+        outline: none;
+        color: $text-black
+      }
+
+      &:focus {
+        border-color: $blue;
+        outline: 0 none;
+        color: $text-black;
+      }
+
+      &:disabled {
+        background: $light-silver;
+        color: $gray;
+      }
+
+      &::-webkit-input-placeholder /* Chrome/Opera/Safari */
+      {
+        color: $gray;
+        @include base-font-italic;
+      }
+      &::-moz-placeholder /* Firefox 19+ */
+      {
+        color: $gray;
+        @include base-font-italic;
+      }
+      &:-moz-placeholder /* Firefox 18- */
+      {
+        color: $gray;
+        @include base-font-italic;
+      }
+      &:-ms-input-placeholder /* IE 10+ */
+      {
+        color: $gray;
+        @include base-font-italic;
+      }
+      &.isViewMode {
+        background: transparent;
+        color: $dark-gray;
+      }
     }
 
-    &:read-only{
-      border: none;
-      outline: none;
-      color: $text-black
-    }
-    &:-moz-read-only { /* For Firefox */
-      border: none;
-      outline: none;
-      color: $text-black
-    }
-
-    &:focus {
-      border-color: $blue;
-      outline: 0 none;
-      color: $text-black;
-    }
-
-    &:disabled {
-      background: $light-silver;
-      color: $gray;
-    }
-
-    &::-webkit-input-placeholder /* Chrome/Opera/Safari */  {
-      color: $gray;
-      @include base-font-italic;
-    }
-    &::-moz-placeholder  /* Firefox 19+ */  {
-      color: $gray;
-      @include base-font-italic;
-    }
-    &:-moz-placeholder  /* Firefox 18- */  {
-      color: $gray;
-      @include base-font-italic;
-    }
-    &:-ms-input-placeholder  /* IE 10+ */
-    {
-      color: $gray;
-      @include base-font-italic;
+    .input-right-icon{
+      position: absolute;
+      right: 10px;
     }
   }
-
-  .sdc-label__error{
+  .sdc-label__error {
     margin-top: 2px;
     margin-left: 2px;
     @include body-3;
   }
+}
 
+.sdc-number-input {
+
+  input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; 
+  }
+  input[type=number] {
+      -moz-appearance:textfield; /* Firefox */
+  }
+  .sdc-input-wrapper .sdc-input__input.sdc-input__number-input {
+    padding: 0 20px 0 10px;
+  }
+  .sdc-input__spinner-buttons { 
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    height: 100%;
+    box-sizing: border-box;
+  }
 }

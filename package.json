@@ -1,19 +1,19 @@
 {
   "name": "onap-ui-common",
-  "version": "1.0.57",
+  "version": "1.1.0",
   "private": false,
-  "author": "",
   "license": "Apache-2.0",
+  "author": "",
   "main": "index.js",
   "description": "Onap-UI common library contains icons map and styles",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onap-sdc/onap-ui-common"
+    "url": "https://gerrit.onap.org/r/admin/repos/sdc/onap-ui-common"
   },
   "bugs": {
-    "url": "https://github.com/onap-sdc/onap-ui-common/issues"
+    "url": "https://jira.onap.org/projects/SDC"
   },
-  "homepage": "https://github.com/onap-sdc/onap-ui-common#readme",
+  "homepage": "https://gerrit.onap.org/r/admin/repos/sdc/onap-ui-common",
   "files": [
     "lib",
     "README.md"
@@ -24,7 +24,7 @@
     "build:common": "npm run prebuild && npm run build:icons && npm run build:copy-files && npm run build:scss",
     "build:icons": "node utils/create-svg-icons-map.js",
     "build:scss": "sass styles/style.scss lib/style.css --no-source-map",
-    "build:copy-files": "copyfiles -f styles/common/mixins.scss lib/scss && copyfiles -f styles/common/variables.scss lib/scss"
+    "build:copy-files": "copyfiles -f styles/common/mixins.scss lib/scss && copyfiles -f styles/common/_typography.scss lib/scss && copyfiles -f styles/common/variables.scss lib/scss && copyfiles components/**/*.html lib/html && copyfiles -f assets/icons/* lib/icons"
   },
   "devDependencies": {
     "copyfiles": "^2.0.0",

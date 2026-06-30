@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
+  <defs>
+    <path id="minus-circle-o-a" d="M12,21 C7,21 3,17 3,12 C3,7 7,3 12,3 C17,3 21,7 21,12 C21,17 17,21 12,21 M12,1 C5.9,1 1,5.9 1,12 C1,18.1 5.9,23 12,23 C18.1,23 23,18.1 23,12 C23,5.9 18.1,1 12,1 M16,11 L8,11 C7.4,11 7,11.4 7,12 C7,12.6 7.4,13 8,13 L16,13 C16.6,13 17,12.6 17,12 C17,11.4 16.6,11 16,11"/>
+  </defs>
+  <use fill-rule="evenodd" xlink:href="#minus-circle-o-a"/>
+</svg>
