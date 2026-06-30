@@ -101,10 +101,8 @@ jobs:
           npm install
           npm run build
       - name: Create authenticated .npmrc (snapshot)
-        # Pinned to Matt Watkins' fork branch feat/create-npmrc-action while the
-        # action is under review; switch to lfreleng-actions@<tag> once merged.
         # yamllint disable-line rule:line-length
-        uses: modeseven-lfreleng-actions/node-create-npmrc-action@8e97d4ab65b38aefabd3b441cf2472af5bddf406
+        uses: lfreleng-actions/node-create-npmrc-action@ddf719ee65057195bcb7c813ec54df9b7db25e1d # v0.1.1
         with:
           registry_url: "https://nexus3.onap.org/repository/npm.snapshot/"
           nexus_user: "sdc-onap-ui-common"
@@ -171,10 +169,8 @@ jobs:
           npm install
           npm run build
       - name: Create authenticated .npmrc (release)
-        # Pinned to Matt Watkins' fork branch feat/create-npmrc-action while the
-        # action is under review; switch to lfreleng-actions@<tag> once merged.
         # yamllint disable-line rule:line-length
-        uses: modeseven-lfreleng-actions/node-create-npmrc-action@8e97d4ab65b38aefabd3b441cf2472af5bddf406
+        uses: lfreleng-actions/node-create-npmrc-action@ddf719ee65057195bcb7c813ec54df9b7db25e1d # v0.1.1
         with:
           registry_url: "https://nexus3.onap.org/repository/npm.public/"
           nexus_user: "sdc-onap-ui-common"
