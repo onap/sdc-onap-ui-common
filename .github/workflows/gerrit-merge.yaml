@@ -122,7 +122,9 @@ jobs:
       - name: Publish snapshot to Nexus
         run: |
           VERSION="${{ steps.version.outputs.snapshot_version }}"
-          npm version "$VERSION" --no-git-tag-version
+          # --allow-same-version so `npm version` is a no-op (rather than
+          # erroring) when package.json already holds this version.
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
           npm publish
 
   check-release:
@@ -200,7 +202,11 @@ jobs:
       - name: Publish release to Nexus
         run: |
           VERSION="${{ needs.check-release.outputs.version }}"
-          npm version "$VERSION" --no-git-tag-version
+          # --allow-same-version so `npm version` is a no-op (rather than
+          # erroring with "Version not changed") when package.json already
+          # holds the release version, as it does for a release cut from the
+          # current version.properties.
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
           npm publish
 
   report-status:
