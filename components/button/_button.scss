@@ -139,7 +139,7 @@
   &.sdc-button__warning {
     border: 1px solid transparent;
     background-color: $yellow;
-    color: $white;
+    color: $text-black;
 
     &:not(:disabled) {
       &:hover, &:active {
