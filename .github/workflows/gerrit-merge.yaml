@@ -122,7 +122,9 @@ jobs:
       - name: Publish snapshot to Nexus
         run: |
           VERSION="${{ steps.version.outputs.snapshot_version }}"
-          npm version "$VERSION" --no-git-tag-version
+          # --allow-same-version so `npm version` is a no-op (rather than
+          # erroring) when package.json already holds this version.
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
           npm publish
 
   check-release:
@@ -144,8 +146,11 @@ jobs:
       - name: Check for release file
         id: check
         run: |
+          # --diff-filter=A: only an ADDED file under releases/ triggers a
+          # release. Without it, removing a release file would also match and
+          # fire this job with a path that no longer exists (empty version).
           RELEASE_FILE=$(git diff-tree --no-commit-id -r HEAD \
-            --name-only -- "releases/" | head -1)
+            --diff-filter=A --name-only -- "releases/" | head -1)
           if [ -z "$RELEASE_FILE" ]; then
             echo "has_release=false" >> "$GITHUB_OUTPUT"
             echo "No release file in this change, skipping release"
@@ -200,7 +205,11 @@ jobs:
       - name: Publish release to Nexus
         run: |
           VERSION="${{ needs.check-release.outputs.version }}"
-          npm version "$VERSION" --no-git-tag-version
+          # --allow-same-version so `npm version` is a no-op (rather than
+          # erroring with "Version not changed") when package.json already
+          # holds the release version, as it does for a release cut from the
+          # current version.properties.
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
           npm publish
 
   report-status:
