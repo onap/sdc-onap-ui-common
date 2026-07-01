@@ -111,7 +111,13 @@ jobs:
           op_service_account_token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
       - name: Build
         run: |
-          npm install
+          # The authenticated .npmrc above sets npm.snapshot as the default
+          # registry so `npm publish` targets it. npm.snapshot is a hosted
+          # repo holding only this package, so installing dependencies from it
+          # 404s (e.g. copyfiles). Install from the npm.public group, which
+          # proxies the public registry, while leaving the .npmrc default for
+          # publish.
+          npm install --registry=https://nexus3.onap.org/repository/npm.public/
           npm run build
       - name: Publish snapshot to Nexus
         run: |
