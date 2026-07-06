@@ -89,7 +89,7 @@ jobs:
 
       - name: Build Node.js project
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/node-build-action@80499ea298bee8229bbd8d79f9b022470276c377 # v0.2.0
+        uses: lfreleng-actions/node-build-action@240bf4111c4ae035762a4ededde2a3c2d17237be # v0.2.2
         with:
           node_version: "18"
 
