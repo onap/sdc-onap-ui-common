@@ -2,6 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2026 The Linux Foundation
 
+# Gerrit-wrapped caller for the reusable Node.js build-test workflow.
+# gerrit_to_platform dispatches this workflow (via the GitHub API) when
+# a patchset is created in Gerrit; it then votes Verified +/-1 on the
+# change. GERRIT_DISABLED permits manual runs from the GitHub UI
+# without Gerrit (the clear/vote jobs are skipped and a normal checkout
+# gets used).
 name: Gerrit Verify
 
 # yamllint disable-line rule:truthy
@@ -10,56 +16,76 @@ on:
     inputs:
       GERRIT_BRANCH:
         description: "Branch that change is against"
-        required: true
+        required: false
         type: string
+        default: ""
       GERRIT_CHANGE_ID:
         description: "The ID for the change"
-        required: true
+        required: false
         type: string
+        default: ""
       GERRIT_CHANGE_NUMBER:
         description: "The Gerrit number"
-        required: true
+        required: false
         type: string
+        default: ""
       GERRIT_CHANGE_URL:
         description: "URL to the change"
-        required: true
+        required: false
         type: string
+        default: ""
       GERRIT_EVENT_TYPE:
         description: "Type of Gerrit event"
-        required: true
+        required: false
         type: string
+        default: ""
       GERRIT_PATCHSET_NUMBER:
         description: "The patch number for the change"
-        required: true
+        required: false
         type: string
+        default: ""
       GERRIT_PATCHSET_REVISION:
         description: "The revision sha"
-        required: true
+        required: false
         type: string
+        default: ""
       GERRIT_PROJECT:
         description: "Project in Gerrit"
-        required: true
+        required: false
         type: string
+        default: ""
       GERRIT_REFSPEC:
         description: "Gerrit refspec of change"
-        required: true
+        required: false
         type: string
+        default: ""
+      GERRIT_DISABLED:
+        description: "Run without Gerrit components"
+        required: false
+        default: false
+        type: boolean
 
 concurrency:
   # yamllint disable-line rule:line-length
   group: gerrit-verify-${{ github.workflow }}-${{ github.event.inputs.GERRIT_CHANGE_ID || github.run_id }}
   cancel-in-progress: true
 
+permissions: {}
+
 jobs:
-  notify:
+  # Clear any previous Verified vote so the change starts from a clean state.
+  clear-vote:
+    if: inputs.GERRIT_DISABLED != true
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 5
     steps:
       # yamllint disable-line rule:line-length
       - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
-
-      - name: Notify job start
+      - name: Clear votes
         # yamllint disable-line rule:line-length
         uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13 # v1.1.2
         with:
@@ -73,40 +99,61 @@ jobs:
       - name: Allow replication
         run: sleep 10s
 
-  build-nodejs:
-    needs: [notify]
+  # Call the reusable build-test workflow. When dispatched by Gerrit, the
+  # gerrit_* inputs drive checkout-gerrit-change-action inside the reusable
+  # workflow. For a manual GERRIT_DISABLED run, the GERRIT_* inputs are empty
+  # so the reusable workflow performs a normal checkout.
+  build-test:
+    needs: clear-vote
+    if: >-
+      always()
+      && (needs.clear-vote.result == 'success'
+          || needs.clear-vote.result == 'skipped')
+    permissions:
+      contents: read
+      pull-requests: read # repository-metadata-action queries PR data
+    # yamllint disable-line rule:line-length
+    uses: lfreleng-actions/node-workflows/.github/workflows/build-test.yaml@d05d6fae90e371c117868e4f5a13e04a71e201ca # v0.0.1
+    with:
+      # When GERRIT_DISABLED is true the gerrit_* values are blanked so the
+      # reusable workflow falls back to a standard checkout.
+      # yamllint disable-line rule:line-length
+      gerrit_refspec: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_REFSPEC || '' }}
+      # yamllint disable-line rule:line-length
+      gerrit_project: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_PROJECT || '' }}
+      # yamllint disable-line rule:line-length
+      gerrit_branch: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_BRANCH || '' }}
+      # gerrit_url falls back to the GERRIT_URL repository variable.
+      # Legacy toolchain: the repository declares no engines or .nvmrc,
+      # and its 2020-era dependency tree needs Node 16
+      node_version: "16"
+      # Soft-fail legs: the legacy dependency tree fails tests on
+      # modern runners, has no lockfile (the audit synthesises one)
+      # and carries known audit findings plus medium+ CVEs; report
+      # the results without voting -1
+      test_permit_fail: true
+      audit_permit_fail: true
+      grype_permit_fail: true
+
+  # Report the overall workflow conclusion back to Gerrit as a Verified vote.
+  vote:
+    if: ${{ always() && inputs.GERRIT_DISABLED != true }}
+    needs: [clear-vote, build-test]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # workflow-conclusion queries the Actions API to list run jobs
+      actions: read
+    timeout-minutes: 5
     steps:
       # yamllint disable-line rule:line-length
       - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
-
-      # yamllint disable-line rule:line-length
-      - uses: lfreleng-actions/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
-        with:
-          gerrit-refspec: ${{ inputs.GERRIT_REFSPEC }}
-
-      - name: Build Node.js project
-        # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/node-build-action@240bf4111c4ae035762a4ededde2a3c2d17237be # v0.2.2
-        with:
-          node_version: "18"
-
-  report-status:
-    if: ${{ always() }}
-    needs: [notify, build-nodejs]
-    runs-on: ubuntu-latest
-    steps:
-      # yamllint disable-line rule:line-length
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
-        with:
-          egress-policy: audit
-
       - name: Get workflow conclusion
+        # yamllint disable-line rule:line-length
         uses: im-open/workflow-conclusion@8eac7f17381a6917bc04fec3e2c92e70ebc37526 # v3.0.0
-
-      - name: Report workflow conclusion
+      - name: Set vote
         # yamllint disable-line rule:line-length
         uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13 # v1.1.2
         with:
