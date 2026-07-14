@@ -75,10 +75,11 @@ permissions: {}
 jobs:
   # Clear any previous Verified vote so the change starts from a clean state.
   clear-vote:
+    name: Clear Gerrit vote
     if: inputs.GERRIT_DISABLED != true
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: read  # only reads repo content; voting is over SSH
     timeout-minutes: 5
     steps:
       # yamllint disable-line rule:line-length
@@ -91,7 +92,9 @@ jobs:
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
-          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
+          # Review-only Gerrit SSH voting key; not gated by an Environment
+          # yamllint disable-line rule:line-length
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}  # zizmor: ignore[secrets-outside-env]
           known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
           gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
           gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
@@ -110,10 +113,10 @@ jobs:
       && (needs.clear-vote.result == 'success'
           || needs.clear-vote.result == 'skipped')
     permissions:
-      contents: read
+      contents: read  # checkout and build the change in the reusable workflow
       pull-requests: read # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/node-workflows/.github/workflows/build-test.yaml@c488b3bab77452d04e259e93ff03478566cc0ca1 # v0.0.4
+    uses: lfreleng-actions/node-workflows/.github/workflows/build-test.yaml@d781fc1bde8f850a6aeff00d7725154c0f1b18da # v0.1.1
     with:
       # When GERRIT_DISABLED is true the gerrit_* values are blanked so the
       # reusable workflow falls back to a standard checkout.
@@ -137,13 +140,13 @@ jobs:
 
   # Report the overall workflow conclusion back to Gerrit as a Verified vote.
   vote:
+    name: Report Gerrit vote
     if: ${{ always() && inputs.GERRIT_DISABLED != true }}
     needs: [clear-vote, build-test]
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      # workflow-conclusion queries the Actions API to list run jobs
-      actions: read
+      contents: read  # only reads repo content; voting is over SSH
+      actions: read  # workflow-conclusion queries the Actions API
     timeout-minutes: 5
     steps:
       # yamllint disable-line rule:line-length
@@ -159,7 +162,9 @@ jobs:
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
-          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
+          # Review-only Gerrit SSH voting key; not gated by an Environment
+          # yamllint disable-line rule:line-length
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}  # zizmor: ignore[secrets-outside-env]
           known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
           gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
           gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
