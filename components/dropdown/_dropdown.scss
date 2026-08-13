@@ -5,14 +5,6 @@
   .sdc-dropdown__input {
       width: 100%;
 
-    ::ng-deep.sdc-input {
-      margin-bottom:0px;
-      width: 100%;
-      input[disabled] {
-        pointer-events: none;
-      }
-    }
-
     .sdc-input .sdc-input__input.isViewMode.disabled {
       background: $light-silver;
       color: $gray;
@@ -61,6 +53,14 @@
     &:hover {
       background-color: $light-silver;
       //@include base-font-semibold;
+    }
+    // Keyboard cursor. The inset bar is not decoration: .selected below wins on
+    // background-color, so without it the cursor would be invisible on the
+    // selected option. $dark-blue rather than $blue because $blue only reaches
+    // 2.7:1 against these backgrounds, short of the 3:1 in SC 1.4.11.
+    &.active {
+      background-color: $light-silver;
+      box-shadow: inset 2px 0 0 0 $dark-blue;
     }
     &.selected {
       background-color: $lighter-blue;

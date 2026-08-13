@@ -89,7 +89,17 @@
 
     .input-right-icon{
       position: absolute;
-      right: 10px;
+      // The icon is 16px, which is below the 24x24 minimum of WCAG 2.2 SC 2.5.8.
+      // The box is grown around it and the offset reduced by the 4px of slack that
+      // creates on each side, so the icon keeps its horizontal position. Vertically
+      // it moves 1.5px down onto the exact centre: it used to sit high because the
+      // inline box reserved descender space below it.
+      right: 6px;
+      min-width: 24px;
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .sdc-label__error {
