@@ -114,7 +114,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/node-workflows/.github/workflows/merge.yaml@d781fc1bde8f850a6aeff00d7725154c0f1b18da # v0.1.1
+    uses: lfreleng-actions/node-workflows/.github/workflows/merge.yaml@0de1b07ab1080035e9535f3528390d942079a363 # v0.4.0
     with:
       gerrit_refspec: ${{ inputs.GERRIT_REFSPEC }}
       gerrit_project: ${{ inputs.GERRIT_PROJECT }}
