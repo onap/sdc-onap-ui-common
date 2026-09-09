@@ -111,8 +111,13 @@ jobs:
       always()
       && (needs.notify.result == 'success'
           || needs.notify.result == 'skipped')
+    # The caller's permissions cap what the reusable workflow's jobs
+    # can request, so id-token/attestations must be granted here or
+    # the attest and sign-artefacts jobs cannot run.
     permissions:
       contents: read
+      id-token: write # OIDC for provenance and Sigstore signing
+      attestations: write # Build provenance attestations
     # yamllint disable-line rule:line-length
     uses: lfreleng-actions/node-workflows/.github/workflows/merge.yaml@81ccc326f470c2d8ba876bc71d0e382eb9b5a9e5 # v0.4.1
     with:
