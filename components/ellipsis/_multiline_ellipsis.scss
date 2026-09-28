@@ -13,7 +13,7 @@
         .multiline-ellipsis-dots {
             display: block;
             position: absolute;
-            background: #ffffff;
+            background: $white;
             right: 0;
             //top: calc(#{@num_lines * 2} - 100%);
 
