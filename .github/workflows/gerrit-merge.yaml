@@ -134,8 +134,7 @@ jobs:
       release_registry_url: "https://nexus3.onap.org/repository/npm.release/"
       # 1Password credential name for the Nexus publish account
       nexus_user: "sdc-onap-ui-common"
-      # Match the Node.js version the Jenkins-era publish jobs used
-      node_version: "18"
+      node_version: "22"
     secrets:
       OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
       VAULT_MAPPING_JSON: ${{ secrets.VAULT_MAPPING_JSON }}

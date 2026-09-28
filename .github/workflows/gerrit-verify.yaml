@@ -127,14 +127,10 @@ jobs:
       # yamllint disable-line rule:line-length
       gerrit_branch: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_BRANCH || '' }}
       # gerrit_url falls back to the GERRIT_URL repository variable.
-      # Legacy toolchain: the repository declares no engines or .nvmrc,
-      # and its 2020-era dependency tree needs Node 16
-      node_version: "16"
-      # Soft-fail legs: the legacy dependency tree fails tests on
-      # modern runners, has no lockfile (the audit synthesises one)
-      # and carries known audit findings plus medium+ CVEs; report
-      # the results without voting -1
-      test_permit_fail: true
+      node_version: "22"
+      # The repository has no test script
+      tests_enabled: false
+      # Report audit and grype findings without voting -1
       audit_permit_fail: true
       grype_permit_fail: true
 
