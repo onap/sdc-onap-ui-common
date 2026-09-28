@@ -1,3 +1,4 @@
-var del = require('delete');
+const fs = require('fs');
+const path = require('path');
 
-del.sync(['lib']);
+fs.rmSync(path.resolve(__dirname, '../lib'), { recursive: true, force: true });
