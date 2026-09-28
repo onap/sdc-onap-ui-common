@@ -12,27 +12,37 @@ npm install onap-ui-common
 
 ### Usage
 
-You can use the scss files (for styling) and icons-map.js file (for using icons).
-To use the icons just import the iconsMap
+The package publishes only its `lib/` folder:
+
+| Path | Content |
+|---|---|
+| `onap-ui-common/lib/style.css` | the compiled stylesheet for all components |
+| `onap-ui-common/lib/scss/variables.scss`, `mixins.scss`, `_typography.scss` | the shared SCSS variables, mixins and typography, to build your own styles on |
+| `onap-ui-common/lib/icons/*.svg` | the plain SVG icons |
+| `onap-ui-common/lib/html/components/**/*.html` | the reference HTML of each component |
+
+To use the icons map just import it:
 ```js
 import { iconsMap } from 'onap-ui-common';
 ```
 
-To use the SCSS files you need to reference them from your local SCSS file and compile them.
+To use the styles, import the compiled CSS, or the variables and mixins into your own SCSS:
 ```scss
-@import '../../../node_modules/onap-ui-common/styles/style.scss'; 
+@import 'node_modules/onap-ui-common/lib/style.css';
+@import 'node_modules/onap-ui-common/lib/scss/variables.scss';
+@import 'node_modules/onap-ui-common/lib/scss/mixins.scss';
 ```
 
 ### See also
-[ONAP-UI-ANGULAR](https://github.com/onap-sdc/onap-ui-angular)
+[ONAP-UI-ANGULAR](https://gerrit.onap.org/r/admin/repos/sdc/onap-ui-angular)
 
-[ONAP-UI-REACT](https://github.com/onap-sdc/onap-ui-react)
+[ONAP-UI-REACT](https://gerrit.onap.org/r/admin/repos/sdc/onap-ui-react)
  
 ### Having some trouble? Have an issue?
-For bugs and issues, please use the [issues](https://github.com/onap-sdc/onap-ui-common/issues) page
+For bugs and issues, please use the [SDC project in the ONAP Jira](https://lf-onap.atlassian.net/jira/software/c/projects/SDC/issues).
 
 ### How to Contribute
 **Contribution can be made only by following these guidelines**
+* Changes are submitted for review on [Gerrit](https://gerrit.onap.org/r/admin/repos/sdc/onap-ui-common). Pull requests opened on the GitHub mirror are forwarded to Gerrit.
 * Every change in the basic HTML files structure must be followed by changes on the framework projects (ONAP-UI-ANGULAR and ONAP-UI-REACT).
 * There will not be any 3rd party UI framework imported (i.e. `Bootstrap`, `Material`, `Foundation`... etc.).
-* Contributions are done only by the [contribution guide](https://github.com/onap-sdc/onap-ui-common/wiki/Contribution-guide). Contributions submitted not in this format and guidelines will not be considered.
