@@ -18,6 +18,9 @@
     "lib",
     "README.md"
   ],
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
     "prebuild": "node utils/delete-folders.js",
     "build": "npm run build:common",
@@ -27,6 +30,6 @@
     "build:copy-files": "node utils/copy-files.js"
   },
   "devDependencies": {
-    "sass": ">=1.77.0 <1.100.0"
+    "sass": "^1.77.0"
   }
 }
