@@ -83,7 +83,7 @@ jobs:
     timeout-minutes: 5
     steps:
       # yamllint disable-line rule:line-length
-      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+      - uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
         with:
           egress-policy: audit
       - name: Clear votes
@@ -116,7 +116,7 @@ jobs:
       contents: read  # checkout and build the change in the reusable workflow
       pull-requests: read # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/node-workflows/.github/workflows/build-test.yaml@1d0abaef18c7ca4b55a1b0c5b0ff1dc5a2cc5458 # v0.7.1
+    uses: lfreleng-actions/node-workflows/.github/workflows/build-test.yaml@e40013bb325b9913138522598331b74efc3f6256  # v0.7.3
     with:
       # When GERRIT_DISABLED is true the gerrit_* values are blanked so the
       # reusable workflow falls back to a standard checkout.
@@ -146,7 +146,7 @@ jobs:
     timeout-minutes: 5
     steps:
       # yamllint disable-line rule:line-length
-      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+      - uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
         with:
           egress-policy: audit
       - name: Get workflow conclusion

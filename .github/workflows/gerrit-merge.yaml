@@ -81,7 +81,7 @@ jobs:
     timeout-minutes: 5
     steps:
       # yamllint disable-line rule:line-length
-      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+      - uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
         with:
           egress-policy: audit
       - name: Notify merge pipeline start
@@ -119,11 +119,14 @@ jobs:
       id-token: write # OIDC for provenance and Sigstore signing
       attestations: write # Build provenance attestations
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/node-workflows/.github/workflows/merge.yaml@1d0abaef18c7ca4b55a1b0c5b0ff1dc5a2cc5458 # v0.7.1
+    uses: lfreleng-actions/node-workflows/.github/workflows/merge.yaml@e40013bb325b9913138522598331b74efc3f6256  # v0.7.3
     with:
       gerrit_refspec: ${{ inputs.GERRIT_REFSPEC }}
       gerrit_project: ${{ inputs.GERRIT_PROJECT }}
       gerrit_branch: ${{ inputs.GERRIT_BRANCH }}
+      # Pins the whole run to the commit that merged this change,
+      # however far master moves before the run resolves it.
+      gerrit_patchset_revision: ${{ inputs.GERRIT_PATCHSET_REVISION }}
       # gerrit_url falls back to the GERRIT_URL repository variable.
       # Hosted Nexus npm repositories receiving publishes; installs
       # resolve from the public registry, which the npm.public group
@@ -153,7 +156,7 @@ jobs:
     timeout-minutes: 5
     steps:
       # yamllint disable-line rule:line-length
-      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+      - uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
         with:
           egress-policy: audit
       - name: Get workflow conclusion
