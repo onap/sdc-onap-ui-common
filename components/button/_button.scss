@@ -269,3 +269,14 @@
     order:2;
   }
 }
+
+.sdc-button-file-opener:focus-within .sdc-button,
+.sdc-button-file-opener .sdc-button:focus-within {
+  outline: 2px solid $blue;
+  outline-offset: 2px;
+}
+
+// :focus-within also matches after a mouse click on the file input, which has no ring of its own.
+.sdc-button-file-opener .sdc-button:has(input[type=file]:focus-within:not(:focus-visible)) {
+  outline: none;
+}

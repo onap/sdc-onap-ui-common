@@ -302,3 +302,9 @@
         }
     }
 }
+
+.svg-icon-wrapper, svg-icon {
+    &[role=button] {
+        @include sdc-focus-ring;
+    }
+}
