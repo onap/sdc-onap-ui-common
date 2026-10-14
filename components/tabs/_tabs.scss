@@ -39,6 +39,19 @@
 		opacity: 0.3;
     cursor: default;
 	}
+	&[role=presentation] {
+	  padding: 0;
+	  cursor: default;
+	}
+  }
+  .sdc-tab__button {
+	@include sdc-button-reset;
+	display: block;
+	padding: 0px 10px 7px 10px;
+	@include sdc-focus-ring;
+	&:disabled {
+	  opacity: 0.3;
+	}
   }
   &.sdc-tabs-header {
 	.sdc-tab {
@@ -48,6 +61,12 @@
   &.sdc-tabs-menu {
 	.sdc-tab {
 	  @include body-1;
+	  padding: 0px 10px 4px 10px;
+	  &[role=presentation] {
+		padding: 0;
+	  }
+	}
+	.sdc-tab__button {
 	  padding: 0px 10px 4px 10px;
 	}
   }

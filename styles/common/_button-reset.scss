@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (C) 2026 Deutsche Telekom AG
+
+@mixin sdc-button-reset {
+    appearance: none;
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    line-height: inherit;
+    // The user-agent button style sets these to fixed values instead of inheriting them.
+    text-transform: inherit;
+    letter-spacing: inherit;
+    word-spacing: inherit;
+    cursor: pointer;
+    &:disabled {
+        cursor: default;
+    }
+}

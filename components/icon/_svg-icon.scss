@@ -183,6 +183,10 @@
     }
 }
 
+button.svg-icon-wrapper, button.sdc-modal__close-button {
+    @include sdc-button-reset;
+}
+
 .svg-icon-wrapper {
     display: inline-flex;
     justify-content: center;
@@ -303,8 +307,6 @@
     }
 }
 
-.svg-icon-wrapper, svg-icon {
-    &[role=button] {
-        @include sdc-focus-ring;
-    }
+.svg-icon-wrapper[role=button], svg-icon[role=button], button.svg-icon-wrapper {
+    @include sdc-focus-ring;
 }
