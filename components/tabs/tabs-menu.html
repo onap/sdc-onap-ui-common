@@ -1,8 +1,8 @@
 <div class="sdc-tabs sdc-tabs-menu">
-    <ul class="sdc-tabs-list" role="tablist">
-        <li class="sdc-tab sdc-tab-active" role="tab">tab 1</li>
-        <li class="sdc-tab" role="tab">tab 2</li>
-        <li class="sdc-tab" role="tab">tab 3</li>
+    <ul class="sdc-tabs-list" role="tablist" aria-orientation="horizontal">
+        <li class="sdc-tab sdc-tab-active" role="tab" id="sdc-tab-0" aria-controls="sdc-tabpanel-0" aria-selected="true" tabindex="0">tab 1</li>
+        <li class="sdc-tab" role="tab" id="sdc-tab-1" aria-controls="sdc-tabpanel-1" aria-selected="false" tabindex="-1">tab 2</li>
+        <li class="sdc-tab" role="tab" id="sdc-tab-2" aria-controls="sdc-tabpanel-2" aria-selected="false" tabindex="-1">tab 3</li>
     </ul>
-    <div class="sdc-tab-content" role="tabpanel"><div>This is the active tab content</div></div>
+    <div class="sdc-tab-content" role="tabpanel" id="sdc-tabpanel-0" aria-labelledby="sdc-tab-0"><div>This is the active tab content</div></div>
 </div>
