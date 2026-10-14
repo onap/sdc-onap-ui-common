@@ -145,6 +145,10 @@
           width: 16px;
           height: 16px;
           line-height: 16px;
+          // $blue is this header's background, so the default ring would be invisible here.
+          &:focus {
+            outline-color: $white;
+          }
           .svg-icon > svg {
             fill: $white;
             color: $white;
@@ -271,4 +275,8 @@
 
 .xsm {
   width: 432px;
+}
+
+.sdc-modal__close-button {
+  @include sdc-focus-ring;
 }

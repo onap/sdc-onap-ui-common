@@ -27,6 +27,7 @@
 	color: $dark-gray;
 	padding: 0px 10px 7px 10px;
 	margin-right: 20px;
+	@include sdc-focus-ring;
 	&:last-child {
 	  margin-right: 0;
 	}
