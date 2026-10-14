@@ -18,3 +18,14 @@
     }
   }
 }
+
+fieldset.sdc-radio-group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+legend.sdc-radio-group__legend {
+  padding: 0;
+}

@@ -12,7 +12,10 @@
     }
   }
   .sdc-accordion-header {
+    @include sdc-button-reset;
     display: flex;
+    // A button shrinks to its content; the header must fill the row.
+    width: 100%;
     flex-direction: row;
     align-items: center;
     @include sdc-focus-ring;

@@ -171,3 +171,40 @@
 
 	}
 }
+
+.sdc-tile-header-button {
+	@include sdc-button-reset;
+	@include ellipsis($display: block);
+	text-align: left;
+
+	// Stretched link: the card is clickable without being an interactive element itself.
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	// The ring goes on the ::after, so it outlines the whole card.
+	&:focus {
+		outline: none;
+	}
+	&:focus::after {
+		outline: 2px solid $blue;
+		outline-offset: 2px;
+	}
+	&:focus:not(:focus-visible)::after {
+		outline: none;
+	}
+}
+
+// Otherwise the header button's ::after covers these and swallows their clicks.
+.sdc-tile .sdc-tile-content,
+.sdc-tile .sdc-tile-footer {
+	a, button, input, select, textarea {
+		position: relative;
+		z-index: 1;
+	}
+}

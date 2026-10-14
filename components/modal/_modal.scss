@@ -236,6 +236,27 @@
   }
 }
 
+// Same specificity as the size classes (.sm, .md, ...), so it must stay above them.
+:where(dialog).sdc-modal {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+}
+
+dialog.sdc-modal:not([open]) {
+  display: none;
+}
+
+// .modal-background already dims the page.
+dialog.sdc-modal::backdrop {
+  background: transparent;
+}
+
 .modal-background {
   position: fixed;
   top: 0;
