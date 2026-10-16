@@ -97,6 +97,11 @@
     border-top: 1px solid $blue;
     border-right: 1px solid $blue;
     border-left: 1px solid $blue;
+    // the default $blue ring would sit on the $blue tab
+    .sdc-tab__button:focus {
+      outline-color: $white;
+      outline-offset: -4px;
+    }
   }
 }
 .line-separates {
