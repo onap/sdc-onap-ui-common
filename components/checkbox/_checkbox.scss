@@ -52,6 +52,12 @@
 			}
 		}
 
+		// The input itself is invisible, so the ring goes on the box drawn by the label.
+		&:focus-visible + .sdc-checkbox__label:before {
+			outline: 2px solid $blue;
+			outline-offset: 2px;
+		}
+
 		&:not(:disabled) {
 			+ .sdc-checkbox__label {
 				cursor: pointer;

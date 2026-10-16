@@ -49,6 +49,12 @@
 			}
 		}
 
+		&:focus-visible + .sdc-radio__label:before {
+			outline: 2px solid $blue;
+			outline-offset: 2px;
+			border-radius: 50%;
+		}
+
 		&:not(:disabled) {
 			+ .sdc-radio__label {
 				cursor: pointer;
