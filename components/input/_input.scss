@@ -7,6 +7,9 @@
 
     &.required::before {
       content: '*';
+      // Alt text "" keeps screen readers from reading "star" as part of the label; browsers
+      // without the syntax drop this declaration and keep the one above.
+      content: '*' / '';
       color: $red;
       margin: 0 4px 0 0;
     }
