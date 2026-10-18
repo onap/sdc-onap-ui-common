@@ -89,6 +89,10 @@
     margin-top: 13px;
   }
   cursor: pointer;
+  .sdc-tab__button {
+    width: 100%;
+    height: 100%;
+  }
   &.sdc-tab-active {
     .tab-title {
       color: $white;
