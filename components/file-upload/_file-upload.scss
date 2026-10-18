@@ -9,6 +9,14 @@
     ::ng-deep .sdc-input {
       margin-bottom: 0px;
     }
+
+    // The file name field is read-only, and sdc-input drops the edge of read-only fields;
+    // the browse button's edge is open on the left and only closes against this one.
+    .sdc-input .sdc-input__input.isViewMode {
+      border: solid 1px $control-border;
+      border-right: none;
+      border-radius: 2px 0 0 2px;
+    }
   }
 
   .file-upload-button {
