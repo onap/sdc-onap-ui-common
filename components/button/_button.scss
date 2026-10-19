@@ -17,8 +17,13 @@
   text-transform: uppercase;
   @include body-1;
 
-  &:disabled {
+  &:disabled, &[aria-disabled="true"] {
     cursor: default;
+  }
+
+  // An aria-disabled button stays focusable but loses each type's :not(:disabled) focus style.
+  &[aria-disabled="true"] {
+    @include sdc-focus-ring;
   }
 
   // Primary button
@@ -27,7 +32,7 @@
     background-color: $blue;
     color: $white;
 
-    &:not(:disabled) {
+    &:not(:disabled):not([aria-disabled="true"]) {
       &:hover, &:active {
         background-color: $light-blue;
       }
@@ -38,7 +43,7 @@
       }
     }
 
-    &:disabled{
+    &:disabled, &[aria-disabled="true"] {
       background: $disabled-blue;
     }
   }
@@ -49,7 +54,7 @@
     background-color: transparent;
     color: $blue;
 
-    &:not(:disabled) {
+    &:not(:disabled):not([aria-disabled="true"]) {
       &:hover, &:active {
         background-color: $light-blue;
         color:$white;
@@ -63,7 +68,7 @@
       }
     }
 
-    &:disabled {
+    &:disabled, &[aria-disabled="true"] {
       color: $disabled-blue;
       border-color: $disabled-blue;
     }
@@ -76,7 +81,7 @@
     fill: $blue;
     border: none;
 
-    &:not(:disabled) {
+    &:not(:disabled):not([aria-disabled="true"]) {
       &:hover, &:active {
         color: $light-blue;
       }
@@ -86,7 +91,7 @@
       }
     }
 
-    &:disabled{
+    &:disabled, &[aria-disabled="true"] {
       color: $disabled-blue;
     }
   }
@@ -97,7 +102,7 @@
     background-color: $green;
     color: $white;
 
-    &:not(:disabled) {
+    &:not(:disabled):not([aria-disabled="true"]) {
       &:hover, &:active {
         background-color: $light-green;
       }
@@ -108,7 +113,7 @@
       }
     }
 
-    &:disabled{
+    &:disabled, &[aria-disabled="true"] {
       background: $disabled-green;
     }
   }
@@ -119,7 +124,7 @@
     background-color: $red;
     color: $white;
 
-    &:not(:disabled) {
+    &:not(:disabled):not([aria-disabled="true"]) {
       &:hover, &:active {
         background-color: $light-red;
       }
@@ -130,7 +135,7 @@
       }
     }
 
-    &:disabled{
+    &:disabled, &[aria-disabled="true"] {
       background: $disabled-red;
     }
   }
@@ -141,7 +146,7 @@
     background-color: $yellow;
     color: $text-black;
 
-    &:not(:disabled) {
+    &:not(:disabled):not([aria-disabled="true"]) {
       &:hover, &:active {
         background-color: $light-yellow;
       }
@@ -152,7 +157,7 @@
       }
     }
 
-    &:disabled{
+    &:disabled, &[aria-disabled="true"] {
       background: $disabled-yellow;
     }
   }
@@ -163,7 +168,7 @@
     background-color: $blue;
     color: $white;
 
-    &:not(:disabled) {
+    &:not(:disabled):not([aria-disabled="true"]) {
       &:hover, &:active {
         background-color: $light-blue;
       }
@@ -174,7 +179,7 @@
       }
     }
 
-    &:disabled{
+    &:disabled, &[aria-disabled="true"] {
       background: $disabled-blue;
     }
   }
@@ -303,7 +308,7 @@
     }
 
     // The underline does not propagate into the inline-flex React wrapper, so its label gets its own.
-    &:not(:disabled):hover {
+    &:not(:disabled):not([aria-disabled="true"]):hover {
       color: $light-blue;
       text-decoration: underline;
 
@@ -312,7 +317,7 @@
       }
     }
 
-    &:disabled {
+    &:disabled, &[aria-disabled="true"] {
       color: $disabled-blue;
     }
   }
