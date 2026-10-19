@@ -258,6 +258,64 @@
     display: inline-block;
     vertical-align: middle;
   }
+
+  // Tertiary: a low-emphasis inline action such as "Add Property". It overrides the size and
+  // icon-position rules above, so it has to stay after them.
+  &.sdc-button__tertiary {
+    width: auto;
+    min-width: 0;
+    height: auto;
+    min-height: 24px;
+    line-height: 20px;
+    padding: 2px 4px;
+    gap: 6px;
+    border: none;
+    background-color: transparent;
+    color: $blue;
+    fill: currentColor;
+    text-transform: none;
+    @include base-font-semibold;
+    font-size: $body-font-1;
+    @include sdc-focus-ring;
+
+    // onap-ui-angular wraps the icon in an <svg-icon> host; as a block it would sit the icon on the
+    // text baseline, 2-3px above centre.
+    > * {
+      display: inline-flex;
+    }
+
+    // The icon follows the text colour; a mode-* class on it would otherwise keep $blue on hover.
+    .svg-icon {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      color: inherit;
+      fill: currentColor;
+    }
+
+    // onap-ui-react renders the icon and the text inside one SVGIcon wrapper.
+    .svg-icon-wrapper {
+      gap: 6px;
+
+      .svg-icon-label {
+        margin: 0;
+      }
+    }
+
+    // The underline does not propagate into the inline-flex React wrapper, so its label gets its own.
+    &:not(:disabled):hover {
+      color: $light-blue;
+      text-decoration: underline;
+
+      .svg-icon-label {
+        text-decoration: underline;
+      }
+    }
+
+    &:disabled {
+      color: $disabled-blue;
+    }
+  }
 }
 .sdc-button__wrapper {
   display: inline-flex;
