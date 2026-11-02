@@ -119,7 +119,7 @@ jobs:
       id-token: write # OIDC for provenance and Sigstore signing
       attestations: write # Build provenance attestations
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/node-workflows/.github/workflows/merge.yaml@ed88a80f524289da5230ed95682604aa0745d0c4  # v0.9.0
+    uses: lfreleng-actions/node-workflows/.github/workflows/merge.yaml@defd4dc6eb49919ddcf3e73d158b274596232a96  # v0.12.0
     with:
       gerrit_refspec: ${{ inputs.GERRIT_REFSPEC }}
       gerrit_project: ${{ inputs.GERRIT_PROJECT }}
